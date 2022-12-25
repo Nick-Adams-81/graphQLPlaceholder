@@ -16,15 +16,26 @@ model Person {
   last_name String
   email String?
   address Address?
+  posts Post[]
 }
 
 model Address {
   id Int @id @default(autoincrement())
-  street_number String
-  street_name String
-  city String
-  state String
-  zip_code String
+  street_number String?
+  street_name String?
+  city String?
+  state String?
+  zip_code String?
   person Person @relation(fields: [personId], references: [id])
   personId Int @unique
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  published Boolean @default(false)
+  title String?
+  body String?
+  author Person @relation(fields: [authorId], references: [id])
+  authorId Int 
 }

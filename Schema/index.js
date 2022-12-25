@@ -24,7 +24,7 @@ const RootQuery = new GraphQLObjectType({
     getAllPeople: {
       type: new GraphQLList(PersonType),
       args: { id: { type: GraphQLInt } },
-      resolve: () => personData
+      resolve: () => personData,
     },
   },
 });

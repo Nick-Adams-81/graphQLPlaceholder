@@ -1,15 +1,24 @@
-const express = require('express');
-const createError = require('http-errors');
-const morgan = require('morgan');
-require('dotenv').config();
+const express = require("express");
+const createError = require("http-errors");
+const morgan = require("morgan");
+require("dotenv").config();
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./Schema/index");
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
-app.use('/api', require('./routes/api.person'));
+app.use("/api", require("./routes/api.person"));
 
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
 
 app.use((req, res, next) => {
   next(createError.NotFound());

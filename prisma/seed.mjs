@@ -10,7 +10,7 @@ const main = async () => {
     data: PersonSeeds,
   });
 
-  await prisma.Address.createMany({
+  await prisma.address.createMany({
     data: AddressSeeds,
   });
   await prisma.post.createMany({

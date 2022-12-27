@@ -42,7 +42,7 @@ const RootQuery = new GraphQLObjectType({
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
-  description: "Create new person mutation",
+  description: "Create new person mutation, this mutation does not create a new address or post",
   fields: {
     createPerson: {
       type: PersonType,
@@ -50,28 +50,39 @@ const Mutation = new GraphQLObjectType({
         first_name: { type: GraphQLString },
         last_name: { type: GraphQLString },
         email: { type: GraphQLString },
-        // address: { type: AddressType },
-        // posts: { type: PostType },
       },
       resolve: (__parent, args) => {
-        return axios.post("http://localhost:5000/api/newPerson", {
-          first_name: args.first_name,
-          last_name: args.last_name,
-          email: args.email,
-          // address: args.address,
-          // posts: args.posts,
-        }).then(res => res.data);
-        // prisma.person.create({
-        //   first_name: args.first_name,
-        //   last_name: args.last_name,
-        //   email: args.email,
-          // address: args.address,
-          // posts: args.posts
-        // })
-        // return args
-
+        return axios
+          .post("http://localhost:5000/api/newPerson", {
+            first_name: args.first_name,
+            last_name: args.last_name,
+            email: args.email,
+          })
+          .then((res) => res.data);
       },
     },
+    createAddress: {
+      type: AddressType,
+      args: {
+        street_number: { type: GraphQLString },
+        street_name: { type: GraphQLString },
+        city: { type: GraphQLString },
+        state: { type: GraphQLString },
+        zip_code: { type: GraphQLString },
+        personId: { type: GraphQLInt }
+      },
+      resolve: (__parent, args) => {
+        prisma.address.create({
+          street_number: args.street_number,
+          street_name: args.street_name,
+          city: args.city,
+          state: args.state,
+          zip_code: args.zip_code,
+          personId: args.personId
+        })
+        return args
+      }
+    }
   },
 });
 

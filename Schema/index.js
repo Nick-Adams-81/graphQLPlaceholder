@@ -6,7 +6,7 @@ const {
   GraphQLString,
   GraphQLList,
 } = graphql;
-
+const axios = require("axios");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
@@ -24,7 +24,20 @@ const RootQuery = new GraphQLObjectType({
     getAllPeople: {
       type: new GraphQLList(PersonType),
       args: { id: { type: GraphQLInt } },
-      resolve: () => personData,
+      resolve:(__parent, __args) => {
+        return axios
+          .get(`http://localhost:5000/api/person`)
+          .then((res) => res.data);
+      },
+    },
+    getOnePerson: {
+      type: PersonType,
+      args: { id: { type: GraphQLInt } },
+      resolve:(__parent, args) => {
+        return axios
+          .get(`http://localhost:5000/api/person/${args.id}`)
+          .then((res) => res.data);
+      },
     },
   },
 });

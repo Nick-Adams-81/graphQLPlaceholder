@@ -34,7 +34,7 @@ router.get("/person/:id", async (req, res, next) => {
   }
 });
 
-router.post("newPerson", async (req, res, next) => {
+router.post("/newPerson", async (req, res, next) => {
   try {
     const data = req.body;
     const person = await prisma.person.create({

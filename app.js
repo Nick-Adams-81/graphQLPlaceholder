@@ -10,7 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
-app.use("/api", require("./routes/api.person"));
+app.use("/", require("./routes/api.person"));
+app.use("/", require("./routes/api.address"));
+// app.use("/", require("./routes/api.posts"));
 
 app.use(
   "/graphql",

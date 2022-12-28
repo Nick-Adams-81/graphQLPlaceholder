@@ -53,7 +53,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: (__parent, args) => {
         return axios
-          .post("http://localhost:5000/api/newPerson", {
+          .post("http://localhost:5000/newPerson", {
             first_name: args.first_name,
             last_name: args.last_name,
             email: args.email,

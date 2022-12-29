@@ -10,6 +10,7 @@ const axios = require("axios");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+// const GetAllPeopleQuery = require('./Queries/getAllPeople')
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
@@ -28,7 +29,7 @@ const RootQuery = new GraphQLObjectType({
             .then((res) => res.data);
           return data;
         } catch (err) {
-          console.log(err);
+          return err;
         }
       },
     },
@@ -63,18 +64,24 @@ const Mutation = new GraphQLObjectType({
         email: { type: GraphQLString },
       },
       resolve: async (__parent, args) => {
-        const data = await axios
-          .post("http://localhost:5000/newPerson", {
-            first_name: args.first_name,
-            last_name: args.last_name,
-            email: args.email,
-          })
-          .then((res) => res.data);
-        return data;
+        try {
+          const data = await axios
+            .post("http://localhost:5000/newPerson", {
+              first_name: args.first_name,
+              last_name: args.last_name,
+              email: args.email,
+            })
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
       },
     },
     createAddress: {
       type: AddressType,
+      description:
+        "Create new address mutation, you need to have a unique user id in the new data",
       args: {
         street_number: { type: GraphQLString },
         street_name: { type: GraphQLString },
@@ -83,16 +90,31 @@ const Mutation = new GraphQLObjectType({
         zip_code: { type: GraphQLString },
         personId: { type: GraphQLInt },
       },
-      resolve: (__parent, args) => {
-        prisma.address.create({
-          street_number: args.street_number,
-          street_name: args.street_name,
-          city: args.city,
-          state: args.state,
-          zip_code: args.zip_code,
-          personId: args.personId,
-        });
-        return args;
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .post(`http://localhost:5000/newAddress`, {
+              street_number: args.street_number,
+              street_name: args.street_name,
+              city: args.city,
+              state: args.state,
+              zip_code: args.zip_code,
+              personId: args.personId,
+            })
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
+        // prisma.address.create({
+        //   street_number: args.street_number,
+        //   street_name: args.street_name,
+        //   city: args.city,
+        //   state: args.state,
+        //   zip_code: args.zip_code,
+        //   personId: args.personId,
+        // });
+        // return args;
       },
     },
   },

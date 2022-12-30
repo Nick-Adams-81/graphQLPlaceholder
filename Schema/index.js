@@ -7,10 +7,8 @@ const {
   GraphQLList,
 } = graphql;
 const axios = require("axios");
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 
-// const GetAllPeopleQuery = require('./Queries/getAllPeople')
+//const GetAllPeopleQuery = require('./Queries/getAllPeople')
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
@@ -106,15 +104,6 @@ const Mutation = new GraphQLObjectType({
         } catch (err) {
           return err;
         }
-        // prisma.address.create({
-        //   street_number: args.street_number,
-        //   street_name: args.street_name,
-        //   city: args.city,
-        //   state: args.state,
-        //   zip_code: args.zip_code,
-        //   personId: args.personId,
-        // });
-        // return args;
       },
     },
   },

@@ -4,6 +4,7 @@ const {
   GraphQLSchema,
   GraphQLInt,
   GraphQLString,
+  GraphQLBoolean,
   GraphQLList,
 } = graphql;
 const axios = require("axios");
@@ -98,6 +99,31 @@ const Mutation = new GraphQLObjectType({
               state: args.state,
               zip_code: args.zip_code,
               personId: args.personId,
+            })
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
+      },
+    },
+    createPost: {
+      type: PostType,
+      description: "Mutation to create a new post",
+      args: {
+        published: { type: GraphQLBoolean },
+        title: { type: GraphQLString },
+        body: { type: GraphQLString },
+        authorId: { type: GraphQLInt },
+      },
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .post("http://localhost:5000/newPost", {
+              published: args.published,
+              title: args.title,
+              body: args.body,
+              authorId: args.authorId,
             })
             .then((res) => res.data);
           return data;

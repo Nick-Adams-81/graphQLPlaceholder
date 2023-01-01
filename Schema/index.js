@@ -16,7 +16,8 @@ const PostType = require("./TypeDefs/PostType");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
-  description: "Query all person data including the address and posts created by the people in the database",
+  description:
+    "Query all person data including the address and posts created by the people in the database",
   fields: {
     getAllPeople: {
       type: new GraphQLList(PersonType),
@@ -33,7 +34,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
-    getOnePerson: {
+    getPersonById: {
       type: PersonType,
       args: { id: { type: GraphQLInt } },
       description: "Query to get single person in the database by id",
@@ -48,17 +49,33 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
+    getPersonByFirstName: {
+      type: new GraphQLList(PersonType),
+      args: { first_name: { type: GraphQLString } },
+      description:
+        "Query to get single person in the database by their first name",
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .get(`http://localhost:5000/onePerson/${args.first_name}`)
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
+      },
+    },
   },
 });
 
 const Mutation = new GraphQLObjectType({
   name: "PersonMutations",
-  description:
-    "Create new person, address, and posts mutations",
+  description: "Create new person, address, and posts mutations",
   fields: {
     createPerson: {
       type: PersonType,
-      description: "Create new Person mutation, this does not create a new address or posts for the person you need to create those through the create address and create post mutations",
+      description:
+        "Create new Person mutation, this does not create a new address or posts for the person you need to create those through the create address and create post mutations",
       args: {
         first_name: { type: GraphQLString },
         last_name: { type: GraphQLString },
@@ -111,7 +128,8 @@ const Mutation = new GraphQLObjectType({
     },
     createPost: {
       type: PostType,
-      description: "Mutation to create a new post, you need to have a unique personId(authorId) to create a new post",
+      description:
+        "Mutation to create a new post, you need to have a unique personId(authorId) to create a new post",
       args: {
         published: { type: GraphQLBoolean },
         title: { type: GraphQLString },

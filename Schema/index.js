@@ -9,13 +9,14 @@ const {
 } = graphql;
 const axios = require("axios");
 
-//const GetAllPeopleQuery = require('./Queries/getAllPeople')
+// const GetAllPeopleQuery = require("./Queries/getAllPeople")
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
+  description: "Query all person data including the address and posts created by the people in the database",
   fields: {
     getAllPeople: {
       type: new GraphQLList(PersonType),
@@ -51,12 +52,13 @@ const RootQuery = new GraphQLObjectType({
 });
 
 const Mutation = new GraphQLObjectType({
-  name: "Mutation",
+  name: "PersonMutations",
   description:
-    "Create new person mutation, this mutation does not create a new address or post",
+    "Create new person, address, and posts mutations",
   fields: {
     createPerson: {
       type: PersonType,
+      description: "Create new Person mutation, this does not create a new address or posts for the person you need to create those through the create address and create post mutations",
       args: {
         first_name: { type: GraphQLString },
         last_name: { type: GraphQLString },
@@ -80,7 +82,7 @@ const Mutation = new GraphQLObjectType({
     createAddress: {
       type: AddressType,
       description:
-        "Create new address mutation, you need to have a unique user id in the new data",
+        "Create new address mutation, you need to have a unique personId in the new data",
       args: {
         street_number: { type: GraphQLString },
         street_name: { type: GraphQLString },
@@ -109,7 +111,7 @@ const Mutation = new GraphQLObjectType({
     },
     createPost: {
       type: PostType,
-      description: "Mutation to create a new post",
+      description: "Mutation to create a new post, you need to have a unique personId(authorId) to create a new post",
       args: {
         published: { type: GraphQLBoolean },
         title: { type: GraphQLString },

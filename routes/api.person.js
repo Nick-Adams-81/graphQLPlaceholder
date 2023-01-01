@@ -7,7 +7,7 @@ router.get("/person", async (req, res, next) => {
     const person = await prisma.person.findMany({
       include: {
         address: true,
-        posts: true
+        posts: true,
       },
     });
     res.json(person);
@@ -22,10 +22,28 @@ router.get("/person/:id", async (req, res, next) => {
     const person = await prisma.person.findUnique({
       include: {
         address: true,
-        posts: true
+        posts: true,
       },
       where: {
         id: Number(id),
+      },
+    });
+    res.json(person);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/onePerson/:first_name", async (req, res, next) => {
+  try {
+    const { first_name } = req.params;
+    const person = await prisma.person.findMany({
+      where: {
+        first_name: String(first_name),
+      },
+      include: {
+        address: true,
+        posts: true,
       },
     });
     res.json(person);

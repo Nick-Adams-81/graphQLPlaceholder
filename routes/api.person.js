@@ -34,12 +34,12 @@ router.get("/person/:id", async (req, res, next) => {
   }
 });
 
-router.get("/onePerson/:first_name", async (req, res, next) => {
+router.get("/onePerson/:name", async (req, res, next) => {
   try {
-    const { first_name } = req.params;
+    const { name } = req.params;
     const person = await prisma.person.findMany({
       where: {
-        first_name: String(first_name),
+        name: String(name),
       },
       include: {
         address: true,

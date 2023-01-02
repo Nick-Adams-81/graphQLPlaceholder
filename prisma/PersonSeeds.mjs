@@ -1,53 +1,66 @@
 export const PersonSeeds = [
   {
-    first_name: "John",
-    last_name: "Doe",
+    name: "John Doe",
     email: "test1@test.com"
   },
   {
-    first_name: "Jane",
-    last_name: "Doe",
+    name: "Jane Doe",
     email: "test2@test.com"
   },
   {
-    first_name: "Nick",
-    last_name: "Adams",
+    name: "Nick Adams",
     email: "nick.pappas.adams@gmail.com"
   },
   {
-    first_name: "Steve",
-    last_name: "Rodgers",
+    name: "Walter Zimmerman",
+    email: "me@zimmerman.com"
+  },
+  {
+    name: "Matt Harris",
+    email: "matt@gmail.com"
+  },
+  {
+    name: "Steve Rogers",
     email: "capamerica@test.com"
   },
   {
-    first_name: "Tony",
-    last_name: "Stark",
+    name: "Tony Stark",
     email: "ironman@test.com"
   },
   {
-    first_name: "Thor",
-    last_name: "Odinson",
+    name: "Thor Odinson",
     email: "godofthunder@test.com"
   },
   {
-    first_name: "Bruce",
-    last_name: "Banner",
+    name: "Bruce Banner",
     email: "hulksmash@test.com"
   },
   {
-    first_name: "Natalia",
-    last_name: "Rominov",
+    name: "Natasha Rominov",
     email: "blackwidow@test.com"
   },
   {
-    first_name: "Peter",
-    last_name: "Parker",
+    name: "PeterParker",
     email: "spidey@test.com"
   },
   {
-    first_name: "Bruce",
-    last_name: "Wayne",
-    email: "thedarkknight@test.com"
+    name: "Bruce Wayne",
+    email: "thedarkknight@test.net"
+  },
+  {
+    name: "Clark Kent",
+    email: "superman@test.net"
+  },
+  {
+    name: "Diana Prince",
+    email: "wonderwoman@ test.net"
+  },
+  {
+    name: "Arthur Curry",
+    email: "aquaman@test.net"
+  },
+  {
+    name: "Barry Allen",
+    email: "theflash@test.net"
   }
-  
 ];

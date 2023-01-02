@@ -9,10 +9,10 @@ const {
 } = graphql;
 const axios = require("axios");
 
-// const GetAllPeopleQuery = require("./Queries/getAllPeople")
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
+// const PeopleQuery = require("./Queries/getAllPeople")
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -37,7 +37,7 @@ const RootQuery = new GraphQLObjectType({
     getPersonById: {
       type: PersonType,
       args: { id: { type: GraphQLInt } },
-      description: "Query to get single person in the database by id",
+      description: "Query to get single person in the database by their id",
       resolve: async (__parent, args) => {
         try {
           const data = await axios
@@ -49,15 +49,15 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
-    getPersonByFirstName: {
+    getPersonByName: {
       type: new GraphQLList(PersonType),
-      args: { first_name: { type: GraphQLString } },
+      args: { name: { type: GraphQLString } },
       description:
-        "Query to get single person in the database by their first name",
+        "Query to get single person in the database by their name",
       resolve: async (__parent, args) => {
         try {
           const data = await axios
-            .get(`http://localhost:5000/onePerson/${args.first_name}`)
+            .get(`http://localhost:5000/onePerson/${args.name}`)
             .then((res) => res.data);
           return data;
         } catch (err) {
@@ -129,7 +129,7 @@ const Mutation = new GraphQLObjectType({
     createPost: {
       type: PostType,
       description:
-        "Mutation to create a new post, you need to have a unique personId(authorId) to create a new post",
+        "Mutation to create a new post, you need to have a personId(authorId) to create a new post",
       args: {
         published: { type: GraphQLBoolean },
         title: { type: GraphQLString },

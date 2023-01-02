@@ -5,7 +5,6 @@ require("dotenv").config();
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./Schema/index");
 
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

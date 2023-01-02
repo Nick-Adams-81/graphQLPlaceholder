@@ -12,11 +12,11 @@ datasource db {
 
 model Person {
   id Int @id @default(autoincrement())
-  first_name String
-  last_name String
+  name String
   email String?
   address Address?
   posts Post[]
+  friends PersonFriend[]
 }
 
 model Address {
@@ -38,4 +38,20 @@ model Post {
   body String?
   author Person @relation(fields: [authorId], references: [id])
   authorId Int 
+}
+
+model Friends {
+  id Int @id @default(autoincrement())
+  group_name String
+  people PersonFriend[]
+}
+
+model PersonFriend {
+  person Person @relation(fields: [personId], references: [id])
+  personId Int
+
+  friends Friends @relation(fields: [friendsId], references: [id])
+  friendsId Int
+
+  @@id([personId, friendsId])
 }

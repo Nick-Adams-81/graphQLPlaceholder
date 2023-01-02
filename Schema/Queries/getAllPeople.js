@@ -31,4 +31,4 @@ const GetAllPeopleQuery = new GraphQLObjectType({
   },
 });
 
-module.exports = GetAllPeopleQuery;
+module.exports = new GraphQLSchema({ query: GetAllPeopleQuery });

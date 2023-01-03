@@ -1,66 +1,66 @@
 export const PersonSeeds = [
   {
     name: "John Doe",
-    email: "test1@test.com"
+    email: "test1@test.com",
   },
   {
     name: "Jane Doe",
-    email: "test2@test.com"
+    email: "test2@test.com",
   },
   {
     name: "Nick Adams",
-    email: "nick.pappas.adams@gmail.com"
+    email: "nick.pappas.adams@gmail.com",
   },
   {
     name: "Walter Zimmerman",
-    email: "me@zimmerman.com"
+    email: "me@zimmerman.com",
   },
   {
     name: "Matt Harris",
-    email: "matt@gmail.com"
+    email: "matt@gmail.com",
   },
   {
     name: "Steve Rogers",
-    email: "capamerica@test.com"
+    email: "capamerica@test.com",
   },
   {
     name: "Tony Stark",
-    email: "ironman@test.com"
+    email: "ironman@test.com",
   },
   {
     name: "Thor Odinson",
-    email: "godofthunder@test.com"
+    email: "godofthunder@test.com",
   },
   {
     name: "Bruce Banner",
-    email: "hulksmash@test.com"
+    email: "hulksmash@test.com",
   },
   {
     name: "Natasha Rominov",
-    email: "blackwidow@test.com"
+    email: "blackwidow@test.com",
   },
   {
     name: "PeterParker",
-    email: "spidey@test.com"
+    email: "spidey@test.com",
   },
   {
     name: "Bruce Wayne",
-    email: "thedarkknight@test.net"
+    email: "thedarkknight@test.net",
   },
   {
     name: "Clark Kent",
-    email: "superman@test.net"
+    email: "superman@test.net",
   },
   {
     name: "Diana Prince",
-    email: "wonderwoman@ test.net"
+    email: "wonderwoman@ test.net",
   },
   {
     name: "Arthur Curry",
-    email: "aquaman@test.net"
+    email: "aquaman@test.net",
   },
   {
     name: "Barry Allen",
-    email: "theflash@test.net"
-  }
+    email: "theflash@test.net",
+  },
 ];

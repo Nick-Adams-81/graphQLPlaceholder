@@ -16,7 +16,7 @@ model Person {
   email String?
   address Address?
   posts Post[]
-  friends PersonFriend[]
+  friends Friends[]
 }
 
 model Address {
@@ -43,15 +43,15 @@ model Post {
 model Friends {
   id Int @id @default(autoincrement())
   group_name String
-  people PersonFriend[]
+  people Person[]
 }
 
-model PersonFriend {
-  person Person @relation(fields: [personId], references: [id])
-  personId Int
+// model PersonFriend {
+//   person Person @relation(fields: [personId], references: [id])
+//   personId Int
 
-  friends Friends @relation(fields: [friendsId], references: [id])
-  friendsId Int
+//   friends Friends @relation(fields: [friendsId], references: [id])
+//   friendsId Int
 
-  @@id([personId, friendsId])
-}
+//   @@id([personId, friendsId])
+// }

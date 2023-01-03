@@ -1,5 +1,5 @@
 const graphql = require("graphql");
-const PersonFriendsType = require("./PersonFriendType")
+const PersonType = require("./PersonType")
 const { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLList } = graphql;
 
 const FriendsType = new GraphQLObjectType({
@@ -7,7 +7,7 @@ const FriendsType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLInt },
     group_name: { type: GraphQLString },
-    people: { type: new GraphQLList(PersonFriendsType) },
+    people: { type: new GraphQLList(PersonType) },
   }),
 });
 

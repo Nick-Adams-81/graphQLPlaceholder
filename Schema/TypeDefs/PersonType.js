@@ -12,7 +12,7 @@ const PersonType = new GraphQLObjectType({
     email: { type: GraphQLString },
     address: { type: AddressType },
     posts: { type: new GraphQLList(PostType) },
-    friends: { type: new GraphQLList(FriendsType) },
+    // friends: { type: new GraphQLList(FriendsType) },
   }),
 });
 

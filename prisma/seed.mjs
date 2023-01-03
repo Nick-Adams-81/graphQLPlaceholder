@@ -2,7 +2,6 @@ import { PersonSeeds } from "./PersonSeeds.mjs";
 import { AddressSeeds } from "./AddressSeeds.mjs";
 import { PostSeeds } from "./PostSeeds.mjs";
 import { FriendsSeeds } from "./FriendsSeeds.mjs";
-import { PersonFriendSeeds } from "./PersonFriendSeeds.mjs";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -20,9 +19,9 @@ const main = async () => {
   await prisma.friends.createMany({
     data: FriendsSeeds,
   });
-  await prisma.personFriend.createMany({
-    data: PersonFriendSeeds,
-  });
+  // await prisma.personFriend.createMany({
+  //   data: PersonFriendSeeds,
+  // });
 };
 
 main()

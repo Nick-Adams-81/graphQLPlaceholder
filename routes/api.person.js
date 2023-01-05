@@ -46,7 +46,7 @@ router.get("/onePerson/:name", async (req, res, next) => {
       include: {
         address: true,
         posts: true,
-        friends: true,
+        friends: { include: { friends: true } },
       },
     });
     res.json(person);

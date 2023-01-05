@@ -8,7 +8,7 @@ router.get("/person", async (req, res, next) => {
       include: {
         address: true,
         posts: true,
-        friends: true,
+        friends: { include: { friends: true } },
       },
     });
     res.json(person);
@@ -24,6 +24,7 @@ router.get("/person/:id", async (req, res, next) => {
       include: {
         address: true,
         posts: true,
+        friends: { include: { friends: true } },
       },
       where: {
         id: Number(id),
@@ -45,6 +46,7 @@ router.get("/onePerson/:name", async (req, res, next) => {
       include: {
         address: true,
         posts: true,
+        friends: true,
       },
     });
     res.json(person);

@@ -12,7 +12,6 @@ const axios = require("axios");
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
-// const PeopleQuery = require("./Queries/getAllPeople")
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -52,8 +51,7 @@ const RootQuery = new GraphQLObjectType({
     getPersonByName: {
       type: new GraphQLList(PersonType),
       args: { name: { type: GraphQLString } },
-      description:
-        "Query to get single person in the database by their name",
+      description: "Query to get single person in the database by their name",
       resolve: async (__parent, args) => {
         try {
           const data = await axios

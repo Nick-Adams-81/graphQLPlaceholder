@@ -1,7 +1,7 @@
 const graphql = require("graphql");
 const AddressType = require("./AddressType");
+const FriendsType = require("./FriendsType");
 const PostType = require("./PostType");
-const FriendsType = require("./FriendsType")
 const { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLList } = graphql;
 
 const PersonType = new GraphQLObjectType({
@@ -12,7 +12,7 @@ const PersonType = new GraphQLObjectType({
     email: { type: GraphQLString },
     address: { type: AddressType },
     posts: { type: new GraphQLList(PostType) },
-    // friends: { type: new GraphQLList(FriendsType) },
+    friends: { type: new GraphQLList(FriendsType) }
   }),
 });
 

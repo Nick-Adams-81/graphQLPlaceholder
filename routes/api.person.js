@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { PrismaClient } = require("@prisma/client");
+const { rmSync } = require("fs");
 const prisma = new PrismaClient();
 
 router.get("/person", async (req, res, next) => {
@@ -54,6 +55,24 @@ router.get("/onePerson/:name", async (req, res, next) => {
       },
     });
     res.json(person);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/limitPeople/:limit", async (req, res, next) => {
+  try {
+    const { limit } = req.params
+    const person = await prisma.person.findMany({
+      skip: 0,
+      take: Number(limit),
+      include: {
+        address: true,
+        posts: true,
+        friends: { include: { friends: { include: { people: true } } } },
+      }
+    })
+    res.json(person)
   } catch (err) {
     next(err);
   }

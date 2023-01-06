@@ -63,6 +63,21 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
+    getLimitedPeople: {
+      type: new GraphQLList(PersonType),
+      args: { limit: { type: GraphQLInt } },
+      description: "Get inputted number of people and not all people",
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .get(`http://localhost:5000/limitPeople/${args.limit}`)
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
+      },
+    },
   },
 });
 

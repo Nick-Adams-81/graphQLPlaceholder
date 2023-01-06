@@ -2,81 +2,86 @@ export const PersonFriendSeeds = [
   {
     personId: 1,
     friendsId: 4,
-    name: "John Doe"
+    name: "John Doe",
   },
   {
     personId: 2,
     friendsId: 4,
-    name: "Jane Doe"
+    name: "Jane Doe",
+  },
+  {
+    personId: 3,
+    friendsId: 4,
+    name: "Nick Adams",
   },
   {
     personId: 3,
     friendsId: 1,
-    name: "Nick Adams"
+    name: "Nick Adams",
   },
   {
     personId: 4,
     friendsId: 1,
-    name: "Walter Zimmerman"
+    name: "Walter Zimmerman",
   },
   {
     personId: 5,
     friendsId: 1,
-    name: "Matt Harris"
+    name: "Matt Harris",
   },
   {
     personId: 6,
     friendsId: 2,
-    name: "Captian America"
+    name: "Captian America",
   },
   {
     personId: 7,
     friendsId: 2,
-    name: "Iron Man"
+    name: "Iron Man",
   },
   {
     personId: 8,
     friendsId: 2,
-    name: "Thor"
+    name: "Thor",
   },
   {
     personId: 9,
     friendsId: 2,
-    name: "The Hulk"
+    name: "The Hulk",
   },
   {
     personId: 10,
     friendsId: 2,
-    name: "Black Widdow"
+    name: "Black Widdow",
   },
   {
     personId: 11,
     friendsId: 2,
-    name: "Spider Man"
+    name: "Spider Man",
   },
   {
     personId: 12,
     friendsId: 3,
-    name: "Batman"
+    name: "Batman",
   },
   {
     personId: 13,
     friendsId: 3,
-    name: "Superman"
+    name: "Superman",
   },
   {
     personId: 14,
     friendsId: 3,
-    name: "Wonder Woman"
+    name: "Wonder Woman",
   },
   {
     personId: 15,
     friendsId: 3,
-    name: "Aquaman"
+    name: "Aquaman",
   },
   {
     personId: 16,
     friendsId: 3,
-    name: "The Flash"
+    name: "The Flash",
   },
 ];

@@ -51,6 +51,7 @@ model PersonToFriends {
   personId  Int
   friends   Friends @relation(fields: [friendsId], references: [id])
   friendsId Int
+  name String
 
   @@id([personId, friendsId])
 }

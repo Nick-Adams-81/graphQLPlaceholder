@@ -12,6 +12,7 @@ const axios = require("axios");
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
+// const GetAllPeopleQuery = require("./Queries/getAllPeople")
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -20,7 +21,6 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     getAllPeople: {
       type: new GraphQLList(PersonType),
-      args: { id: { type: GraphQLInt } },
       description: "Query to get all people in the database",
       resolve: async (__parent, __args) => {
         try {

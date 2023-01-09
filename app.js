@@ -13,6 +13,7 @@ app.use(morgan("dev"));
 app.use("/", require("./routes/api.person"));
 app.use("/", require("./routes/api.address"));
 app.use("/", require("./routes/api.posts"));
+app.use("/", require("./routes/api.friends"))
 
 app.use(
   "/graphql",

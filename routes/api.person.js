@@ -84,10 +84,8 @@ router.post("/newPerson", async (req, res, next) => {
       data: data,
     });
     res.json(person);
-    res.status(200).send({ message: "Person created!" });
   } catch (err) {
     next(err);
-    res.status(400).send({ message: "Something went wrong!" });
   }
 });
 
@@ -115,10 +113,8 @@ router.delete("/deletePerson/:id", async (req, res, next) => {
       },
     });
     res.json(deletedePrson);
-    res.status(200).send({ message: "person deleted" });
   } catch (err) {
     next(err);
-    res.status(400).send({ message: "Something went wrong..." });
   }
 });
 

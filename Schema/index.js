@@ -90,17 +90,58 @@ const Mutation = new GraphQLObjectType({
       description:
         "Create new Person mutation, this does not create a new address or posts for the person you need to create those through the create address and create post mutations",
       args: {
-        first_name: { type: GraphQLString },
-        last_name: { type: GraphQLString },
+        name: { type: GraphQLString },
         email: { type: GraphQLString },
       },
       resolve: async (__parent, args) => {
         try {
           const data = await axios
             .post("http://localhost:5000/newPerson", {
-              first_name: args.first_name,
-              last_name: args.last_name,
+              name: args.name,
               email: args.email,
+            })
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
+      },
+    },
+    updatePerson: {
+      name: "UpdatePerson",
+      type: PersonType,
+      description: "Update existing person in the database",
+      args: {
+        id: { type: GraphQLInt },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+      },
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .patch(`http://localhost:5000/updatePerson/${args.id}`, {
+              name: args.name,
+              email: args.email,
+            })
+            .then((res) => res.data);
+          return data;
+        } catch (err) {
+          return err;
+        }
+      },
+    },
+    deletePerson: {
+      name: "DeletePerson",
+      type: PersonType,
+      description: "Delete a user by id",
+      args: {
+        id: { type: GraphQLInt },
+      },
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .delete(`http://localhost:5000/deletePerson/${args.id}`, {
+              id: args.id,
             })
             .then((res) => res.data);
           return data;

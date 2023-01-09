@@ -18,6 +18,7 @@ router.post("/newFriends", async (req, res, next) => {
       data: data,
     });
     res.json(friend);
+    // res.send("new friend added")
   } catch (err) {
     next(err);
   }

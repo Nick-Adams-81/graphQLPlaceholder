@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { PrismaClient } = require("@prisma/client");
-const { rmSync } = require("fs");
 const prisma = new PrismaClient();
 
 router.get("/person", async (req, res, next) => {
@@ -62,7 +61,7 @@ router.get("/onePerson/:name", async (req, res, next) => {
 
 router.get("/limitPeople/:limit", async (req, res, next) => {
   try {
-    const { limit } = req.params
+    const { limit } = req.params;
     const person = await prisma.person.findMany({
       skip: 0,
       take: Number(limit),
@@ -70,9 +69,9 @@ router.get("/limitPeople/:limit", async (req, res, next) => {
         address: true,
         posts: true,
         friends: { include: { friends: { include: { people: true } } } },
-      }
-    })
-    res.json(person)
+      },
+    });
+    res.json(person);
   } catch (err) {
     next(err);
   }
@@ -85,12 +84,14 @@ router.post("/newPerson", async (req, res, next) => {
       data: data,
     });
     res.json(person);
+    res.status(200).send({ message: "Person created!" });
   } catch (err) {
     next(err);
+    res.status(400).send({ message: "Something went wrong!" });
   }
 });
 
-router.patch("updatePerson/:id", async (req, res, next) => {
+router.patch("/updatePerson/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const person = await prisma.person.update({
@@ -105,7 +106,7 @@ router.patch("updatePerson/:id", async (req, res, next) => {
   }
 });
 
-router.delete("deletePerson/:id", async (req, res, next) => {
+router.delete("/deletePerson/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedePrson = await prisma.person.delete({
@@ -114,8 +115,10 @@ router.delete("deletePerson/:id", async (req, res, next) => {
       },
     });
     res.json(deletedePrson);
+    res.status(200).send({ message: "person deleted" });
   } catch (err) {
     next(err);
+    res.status(400).send({ message: "Something went wrong..." });
   }
 });
 

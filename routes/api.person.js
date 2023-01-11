@@ -111,6 +111,17 @@ router.delete("/deletePerson/:id", async (req, res, next) => {
       where: {
         id: Number(id),
       },
+      // data: {
+      //   posts: {
+      //     deleteMany: {},
+      //   },
+      //   address: {
+      //     deleteMany: {},
+      //   },
+      //   friends: {
+      //     deleteMany: {},
+      //   },
+      // },
     });
     res.json(deletedePrson);
   } catch (err) {

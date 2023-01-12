@@ -129,4 +129,18 @@ router.delete("/deletePerson/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/deletePersonByName/:name", async (req, res, next) => {
+  try {
+    const { name } = req.params;
+    const deletedPerson = await prisma.person.deleteMany({
+      where: {
+        name: String(name),
+      },
+    });
+    res.json(deletedPerson);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

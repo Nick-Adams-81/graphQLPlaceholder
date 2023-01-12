@@ -66,7 +66,7 @@ const RootQuery = new GraphQLObjectType({
     getLimitedPeople: {
       type: new GraphQLList(PersonType),
       args: { limit: { type: GraphQLInt } },
-      description: "Get inputted number of people and not all people",
+      description: "Get limited number of people based on inputted value",
       resolve: async (__parent, args) => {
         try {
           const data = await axios
@@ -130,10 +130,10 @@ const Mutation = new GraphQLObjectType({
         }
       },
     },
-    deletePerson: {
+    deletePersonById: {
       name: "DeletePerson",
       type: PersonType,
-      description: "Delete a user by id",
+      description: "Delete a person by id",
       args: {
         id: { type: GraphQLInt },
       },

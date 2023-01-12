@@ -150,6 +150,26 @@ const Mutation = new GraphQLObjectType({
         }
       },
     },
+    deletePersonByName: {
+      name: "DeletePersnByName",
+      type: PersonType,
+      description: "Delete a person by name",
+      args: {
+        name: { type: GraphQLString },
+      },
+      resolve: async (__parent, args) => {
+        try {
+          const data = await axios
+            .delete(`http://localhost:5000/deletePersonByName/${args.name}`, {
+              name: args.name,
+            })
+            .then((res) => res.data);
+            return data
+        } catch (err) {
+          return err;
+        }
+      },
+    },
     createAddress: {
       type: AddressType,
       description:

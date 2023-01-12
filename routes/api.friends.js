@@ -13,12 +13,11 @@ router.get("/friends", async (req, res, next) => {
 
 router.post("/newFriends", async (req, res, next) => {
   try {
-    const data = req.params;
+    const data = req.body;
     const friend = await prisma.friends.create({
       data: data,
     });
     res.json(friend);
-    // res.send("new friend added")
   } catch (err) {
     next(err);
   }

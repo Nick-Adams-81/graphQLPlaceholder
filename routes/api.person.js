@@ -112,7 +112,7 @@ router.delete("/deletePerson/:id", async (req, res, next) => {
         personId: Number(id),
       },
     });
-    const deletePost = prisma.post.deleteMany({
+    const deletePost = await prisma.post.deleteMany({
       where: {
         authorId: Number(id),
       },

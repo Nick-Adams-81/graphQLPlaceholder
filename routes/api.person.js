@@ -107,21 +107,21 @@ router.patch("/updatePerson/:id", async (req, res, next) => {
 router.delete("/deletePerson/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    // const deleteAddress = await prisma.address.delete({
-    //   where: {
-    //     personId: Number(id),
-    //   },
-    // });
+    const deleteAddress = await prisma.address.delete({
+      where: {
+        personId: Number(id),
+      },
+    });
     const deletePost = prisma.post.deleteMany({
       where: {
         authorId: Number(id),
       },
     });
-    // const deleteFriends = await prisma.personToFriends.deleteMany({
-    //   where: {
-    //     personId: Number(id),
-    //   },
-    // });
+    const deleteFriends = await prisma.personToFriends.deleteMany({
+      where: {
+        personId: Number(id),
+      },
+    });
     const deletePrson = await prisma.person.delete({
       where: {
         id: Number(id),

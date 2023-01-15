@@ -38,7 +38,9 @@ const RootQuery = new GraphQLObjectType({
       description: "Query to get single person in the database by their id",
       resolve: async (__parent, args) => {
         try {
-          const person = await axios.get(`http://localhost:5000/person/${args.id}`);
+          const person = await axios.get(
+            `http://localhost:5000/person/${args.id}`
+          );
           const data = await person.data;
           return data;
         } catch (err) {
@@ -52,9 +54,10 @@ const RootQuery = new GraphQLObjectType({
       description: "Query to get single person in the database by their name",
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .get(`http://localhost:5000/onePerson/${args.name}`)
-            .then((res) => res.data);
+          const person = await axios.get(
+            `http://localhost:5000/onePerson/${args.name}`
+          );
+          const data = await person.data;
           return data;
         } catch (err) {
           return err;
@@ -67,9 +70,10 @@ const RootQuery = new GraphQLObjectType({
       description: "Get limited number of people based on inputted value",
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .get(`http://localhost:5000/limitPeople/${args.limit}`)
-            .then((res) => res.data);
+          const people = await axios.get(
+            `http://localhost:5000/limitPeople/${args.limit}`
+          );
+          const data = await people;
           return data;
         } catch (err) {
           return err;
@@ -93,12 +97,14 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .post("http://localhost:5000/newPerson", {
+          const newPerson = await axios.post(
+            "http://localhost:5000/newPerson",
+            {
               name: args.name,
               email: args.email,
-            })
-            .then((res) => res.data);
+            }
+          );
+          const data = await newPerson.data;
           return data;
         } catch (err) {
           return err;
@@ -116,12 +122,14 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .patch(`http://localhost:5000/updatePerson/${args.id}`, {
+          const updatedPerson = await axios.patch(
+            `http://localhost:5000/updatePerson/${args.id}`,
+            {
               name: args.name,
               email: args.email,
-            })
-            .then((res) => res.data);
+            }
+          );
+          const data = await updatedPerson.data;
           return data;
         } catch (err) {
           return err;
@@ -137,11 +145,13 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .delete(`http://localhost:5000/deletePerson/${args.id}`, {
+          const deletedPerson = await axios.delete(
+            `http://localhost:5000/deletePerson/${args.id}`,
+            {
               id: args.id,
-            })
-            .then((res) => res.data);
+            }
+          );
+          const data = await deletedPerson.data;
           return data;
         } catch (err) {
           return err;
@@ -157,11 +167,13 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .delete(`http://localhost:5000/deletePersonByName/${args.name}`, {
+          const deletedPerson = await axios.delete(
+            `http://localhost:5000/deletePersonByName/${args.name}`,
+            {
               name: args.name,
-            })
-            .then((res) => res.data);
+            }
+          );
+          const data = await deletedPerson.data;
           return data;
         } catch (err) {
           return err;
@@ -182,16 +194,15 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .post(`http://localhost:5000/newAddress`, {
-              street_number: args.street_number,
-              street_name: args.street_name,
-              city: args.city,
-              state: args.state,
-              zip_code: args.zip_code,
-              personId: args.personId,
-            })
-            .then((res) => res.data);
+          const address = await axios.post(`http://localhost:5000/newAddress`, {
+            street_number: args.street_number,
+            street_name: args.street_name,
+            city: args.city,
+            state: args.state,
+            zip_code: args.zip_code,
+            personId: args.personId,
+          });
+          const data = await address.data;
           return data;
         } catch (err) {
           return err;
@@ -210,14 +221,13 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .post("http://localhost:5000/newPost", {
-              published: args.published,
-              title: args.title,
-              body: args.body,
-              authorId: args.authorId,
-            })
-            .then((res) => res.data);
+          const post = await axios.post("http://localhost:5000/newPost", {
+            published: args.published,
+            title: args.title,
+            body: args.body,
+            authorId: args.authorId,
+          });
+          const data = await post.data;
           return data;
         } catch (err) {
           return err;

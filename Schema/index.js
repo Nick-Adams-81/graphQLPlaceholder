@@ -24,9 +24,8 @@ const RootQuery = new GraphQLObjectType({
       description: "Query to get all people in the database",
       resolve: async (__parent, __args) => {
         try {
-          const data = await axios
-            .get(`http://localhost:5000/person`)
-            .then((res) => res.data);
+          const people = await axios.get(`http://localhost:5000/person`);
+          const data = await people.data;
           return data;
         } catch (err) {
           return err;
@@ -39,9 +38,8 @@ const RootQuery = new GraphQLObjectType({
       description: "Query to get single person in the database by their id",
       resolve: async (__parent, args) => {
         try {
-          const data = await axios
-            .get(`http://localhost:5000/person/${args.id}`)
-            .then((res) => res.data);
+          const person = await axios.get(`http://localhost:5000/person/${args.id}`);
+          const data = await person.data;
           return data;
         } catch (err) {
           return err;
@@ -164,7 +162,7 @@ const Mutation = new GraphQLObjectType({
               name: args.name,
             })
             .then((res) => res.data);
-            return data
+          return data;
         } catch (err) {
           return err;
         }

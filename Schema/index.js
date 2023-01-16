@@ -73,7 +73,7 @@ const RootQuery = new GraphQLObjectType({
           const people = await axios.get(
             `http://localhost:5000/limitPeople/${args.limit}`
           );
-          const data = await people;
+          const data = await people.data;
           return data;
         } catch (err) {
           return err;
@@ -98,7 +98,7 @@ const Mutation = new GraphQLObjectType({
       resolve: async (__parent, args) => {
         try {
           const newPerson = await axios.post(
-            "http://localhost:5000/newPerson",
+            `http://localhost:5000/newPerson`,
             {
               name: args.name,
               email: args.email,
@@ -221,7 +221,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve: async (__parent, args) => {
         try {
-          const post = await axios.post("http://localhost:5000/newPost", {
+          const post = await axios.post(`http://localhost:5000/newPost`, {
             published: args.published,
             title: args.title,
             body: args.body,

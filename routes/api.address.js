@@ -4,7 +4,7 @@ const prisma = require("./client");
 router.get("/getAddress", async (req, res, next) => {
   try {
     const address = await prisma.address.findMany({});
-    res.json(address);
+    res.status(200).json(address);
   } catch (err) {
     next(err);
   }

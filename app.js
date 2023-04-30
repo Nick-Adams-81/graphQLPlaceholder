@@ -24,11 +24,11 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
+app.use((_req, _res, next) => {
   next(createError.NotFound());
 });
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   res.send({
     status: err.status || 500,

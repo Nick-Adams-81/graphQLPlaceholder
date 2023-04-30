@@ -14,8 +14,9 @@ router.get("/person", async (req, res, next) => {
         },
       },
     });
-    res.json(person);
+    res.status(200).json(person);
   } catch (err) {
+    res.status(400)
     next(err);
   }
 });
@@ -135,27 +136,27 @@ router.delete("/deletePerson/:id", async (req, res, next) => {
 router.delete("/deletePersonByName/:name", async (req, res, next) => {
   try {
     const { name } = req.params;
-    const deleteAddress = await prisma.address.delete({
+    // const deleteAddress = await prisma.address.delete({
+    //   where: {
+    //     personId: String(name),
+    //   },
+    // });
+    // const deletePost = await prisma.post.deleteMany({
+    //   where: {
+    //     authorId: String(name),
+    //   },
+    // });
+    // const deleteFriends = await prisma.personToFriends.deleteMany({
+    //   where: {
+    //     personId: String(name),
+    //   },
+    // });
+    const deletePrson = await prisma.person.deleteMany({
       where: {
-        personId: String(name),
+        name: String(name),
       },
     });
-    const deletePost = await prisma.post.deleteMany({
-      where: {
-        authorId: String(name),
-      },
-    });
-    const deleteFriends = await prisma.personToFriends.deleteMany({
-      where: {
-        personId: String(name),
-      },
-    });
-    const deletePrson = await prisma.person.delete({
-      where: {
-        id: String(name),
-      },
-    });
-    res.json(deletePost, deletePrson, deleteAddress, deleteFriends);
+    res.json(deletePrson);
   } catch (err) {
     next(err);
   }

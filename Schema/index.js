@@ -12,7 +12,6 @@ const axios = require("axios");
 const PersonType = require("./TypeDefs/PersonType");
 const AddressType = require("./TypeDefs/AddressType");
 const PostType = require("./TypeDefs/PostType");
-// const GetAllPeopleQuery = require("./Queries/getAllPeople")
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -173,8 +172,8 @@ const Mutation = new GraphQLObjectType({
               name: args.name,
             }
           );
-          const data = await deletedPerson.data;
-          return data;
+          // const data = await deletedPerson.data;
+          return "Person deleted!";
         } catch (err) {
           return err;
         }

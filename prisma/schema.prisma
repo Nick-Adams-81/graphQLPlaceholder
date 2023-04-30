@@ -26,8 +26,8 @@ model Address {
   city          String?
   state         String?
   zip_code      String?
-  person        Person?  @relation(fields: [personId], references: [id])
-  personId      Int?     @unique
+  person        Person? @relation(fields: [personId], references: [id])
+  personId      Int?    @unique
 }
 
 model Post {
@@ -36,7 +36,7 @@ model Post {
   published Boolean  @default(false)
   title     String?
   body      String?
-  author    Person?   @relation(fields: [authorId], references: [id])
+  author    Person?  @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
 

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const prisma = require("./client");
+const prisma = require("../client");
 
 router.get("/friends", async (req, res, next) => {
   try {

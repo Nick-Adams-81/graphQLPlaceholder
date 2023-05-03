@@ -2,10 +2,8 @@ import { PersonSeeds } from "./PersonSeeds.mjs";
 import { AddressSeeds } from "./AddressSeeds.mjs";
 import { PostSeeds } from "./PostSeeds.mjs";
 import { FriendsSeeds } from "./FriendsSeeds.mjs";
-import { PrismaClient } from "@prisma/client";
 import { PersonFriendSeeds } from "./PersonFriendSeeds.mjs";
-
-const prisma = new PrismaClient();
+import prisma from "../client"
 
 const main = async () => {
   try {

@@ -41,39 +41,7 @@ This project was my first with graphql, and presented many challenges. I appreci
 
 
 ## Using the graphiql GUI
-In the docs portion of the GUI there are definitions to all the queries and mutations you can create, look in the top right of the screen. The root query is somewhat long but you can leave out any field you want. An example of the root query is here:
-query {
-  getAllPeople{
-    id
-    name
-    email
-    address {
-      id
-      street_name
-      street_number
-      city
-      state
-      zip_code
-      personId
-    }
-    posts {
-      id
-      title
-      body
-      published
-      authorId
-    } 
-    friends {
-      friends {
-        id
-        group_name
-        people {
-          name
-        }
-      }
-    }
-  }
-}
+In the docs portion of the GUI there are definitions to all the queries and mutations you can create, look in the top right of the screen. The root query is somewhat long but you can leave out any field you want. Check the docs for examples of the queris and mutations. 
 ### Created by:
 Nick Adams
 

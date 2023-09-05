@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const prisma = require("../client");
 
-router.get("/getAddress", async (req, res, next) => {
+router.get("/getAddress", async (_req, res, next) => {
   try {
     const address = await prisma.address.findMany({});
-    res.status(200).json(address);
+    res.json(address);
   } catch (err) {
     next(err);
   }

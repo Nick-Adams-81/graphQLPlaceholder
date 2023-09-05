@@ -172,8 +172,8 @@ const Mutation = new GraphQLObjectType({
               name: args.name,
             }
           );
-          // const data = await deletedPerson.data;
-          return "Person deleted!";
+          const data = await deletedPerson.data;
+          return data;
         } catch (err) {
           return err;
         }

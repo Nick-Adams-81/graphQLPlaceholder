@@ -14,12 +14,36 @@ router.get("/person", async (req, res, next) => {
         },
       },
     });
-    res.status(200).json(person);
+    res.json(person);
   } catch (err) {
     res.status(400)
     next(err);
   }
 });
+
+router.get("/sortedPeople", async (req, res, next) => {
+  try {
+    const people = await prisma.person.findMany({
+      include: {
+        address: true,
+        posts: true,
+        friends: {
+          include: {
+            friends: { include: { people: true } },
+          },
+        },
+      },
+    })
+    
+    const sortedPeople = people.sort((a, b) => {
+      if(a.name > b.name) return 1
+      else return -1
+    })
+    res.json(sortedPeople)
+  } catch(err) {
+    next(err)
+  }
+})
 
 router.get("/person/:id", async (req, res, next) => {
   try {

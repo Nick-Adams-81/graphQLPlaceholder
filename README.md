@@ -40,7 +40,7 @@ You should have the project running at: http://localhost:5000/graphql
 This project was my first with graphql, and presented many challenges. I appreciate any feedback on this as I am still learning, thank you
 
 
-## Using the graphiql GUI
+## The graphiql GUI
 In the docs portion of the GUI there are definitions to all the queries and mutations you can create, look in the top right of the screen. The root query is somewhat long but you can leave out any field you want. Check the docs for examples of the queris and mutations. 
 ### Created by:
 Nick Adams
